@@ -10,5 +10,3 @@
 
 % xlabel('Displacement [mm]')
 % ylabel('Force [N]')
-
-% ylim([0 300])
