@@ -16,6 +16,8 @@ data2 = specimen2[specimen2['Displacement'] < 1]
 data3 = specimen3[specimen3['Displacement'] < 1]
 
 
+# plotting the data
+
 plt.figure()
 plt.plot(data1['Displacement'], data1['Force'])
 plt.plot(data2['Displacement'], data2['Force'])
