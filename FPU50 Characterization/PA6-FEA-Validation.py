@@ -34,7 +34,7 @@ stress, strain = stress_strain(force_data, disp_data)
 # print(strain)
 
 stress_strain_data = {'Stress':stress, 'Strain': strain}
-df = pd.DataFrame(stress_strain_data)
+df = pd.DataFrame(stress_strain_data) # convert stress-strain data to a dataframe
 
 
 area = specimen_thickness * specimen_width
