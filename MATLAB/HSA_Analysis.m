@@ -18,3 +18,5 @@ y0 = 600;
 width = 600;
 height = 450;
 set(gcf, 'position', [x0, y0, width, height])
+
+% this code has to be modified to include experimental data from the Instron
