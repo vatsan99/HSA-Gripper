@@ -1,3 +1,3 @@
 # HSA-Gripper
 
-Code and image files from the HSA gripper project by Srivatsan
+Code and image files from the HSA gripper project
