@@ -80,23 +80,3 @@ shg
 fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Figures', 'TR-SLL-out-of-plane.png');
 
 saveas(gcf, fullFilePath)
-
-
-% expression: F_g = (kappa / r**2) * x, r (thickness of the base Ecoflex
-% layer), x (extension distance)
-
-%%
-% torsionRatio = disp./flip(ang_deg);
-% SLLRatio = 27.38/15.36;
-% SLLequiv = [SLLRatio.*.1 ];
-% nSLL = [0.00001];
-% figure()
-% semilogy(t_n,torsionRatio,'ko','MarkerSize',6)
-% ylim ([0.1 30])
-% hold on 
-% plot(nSLL,SLLequiv,'ro','MarkerSize',6)
-% xlabel('Number of Triangles [-]')
-% ylabel('In-Plane Performance Ratio [mm]/[degree]')
-% title('Grippability Metric')
-% 
-% legend('TRL - (M = 5 N mm,F = 0.01 N)','SLL - (M ~= 5 N mm,F = 0.01 N)')
