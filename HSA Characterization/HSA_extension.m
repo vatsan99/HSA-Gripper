@@ -12,30 +12,27 @@ HSA_exp_force = HSA_exp(:, 3).*1000; % force data to N
 HSA_exp_disp2 = HSA_exp2(:, 2);
 HSA_exp_force2 = HSA_exp2(:, 3).*1000; % force data to N
 
-HSA_FEA_disp = HSA_FEA(:, 1);
-HSA_FEA_force = HSA_FEA(:, 2);
+HSA_FEA_disp = HSA_FEA(:, 4);
+HSA_FEA_force = HSA_FEA(:, 5);
 
 figure()
-plot(HSA_exp_disp, HSA_exp_force, "LineWidth", 1.5) % instron extension
+plot(HSA_exp_disp, HSA_exp_force, "LineWidth", 1.5, 'DisplayName', 'Instron 1') % instron extension
 hold on
-plot(HSA_exp_disp2, HSA_exp_force2, "LineWidth", 1.5)
+plot(HSA_exp_disp2, HSA_exp_force2, "LineWidth", 1.5, 'DisplayName', 'Instron 2')
 hold on
-plot(HSA_FEA_disp, HSA_FEA_force, "LineWidth", 1.5) % FEA
+plot(HSA_FEA_disp, HSA_FEA_force, "LineWidth", 1.5, 'DisplayName', 'FEA') % FEA
 
 xlabel('Displacement [mm]')
 ylabel('Force [N]')
+legend()
 % xlim([0 6])
 % ylim([0 35])
-grid on
-grid minor
-
-
 
 
 % figure size
 
 x0 = 1000;
 y0 = 650;
-width = 800;
+width = 600;
 height = 400;
 set(gcf, 'position', [x0, y0, width, height])
