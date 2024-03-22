@@ -1,26 +1,28 @@
 clc
 close all
 
-data = readtable('HSA-Tensile-Torsion_1.csv');
-data1 = table2array(data);
-data2 = table2array(readtable('HSA-Tensile-Torsion_2.csv'));
+% data = readtable('HSA-Tensile-Torsion_1.csv');
+% data1 = table2array(data);
+% data2 = table2array(readtable('HSA-Tensile-Torsion_2.csv'));
 
+HSA_FEA = table2array(readtable('HSA-FEA-Extension.csv'));
+HSA_exp = table2array(readtable('HSA-FEA-Extension.csv'));
 
-disp_data = data1(:, 2);
-force_data = data1(:, 3);
+HSA_exp_disp = HSA_exp(:, 1);
+HSA_exp_force = HSA_exp(:, 2);
 
-disp_data1 = data2(:, 2);
-force_data1 = data2(:, 3);
+HSA_FEA_disp = HSA_FEA(:, 2);
+HSA_FEA_force = HSA_FEA(:, 3);
 
 figure()
-plot(disp_data, force_data*(-1), "LineWidth", 1.5)
+plot(HSA_exp_disp, HSA_exp_force, "LineWidth", 1.5)
 hold on
-plot(disp_data1, force_data1*(-1), "LineWidth", 1.5)
+plot(HSA_FEA_disp, HSA_FEA_force, "LineWidth", 1.5)
 
 xlabel('Displacement [mm]')
 ylabel('Force [N]')
-xlim([0 6])
-ylim([0 35])
+% xlim([0 6])
+% ylim([0 35])
 grid on
 grid minor
 
