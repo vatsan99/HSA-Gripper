@@ -1,7 +1,10 @@
 close all
 clc
 
-points = [0, 60; 200, 0]; % maximum extension and rotation
+max_disp = 45.34;
+max_theta = 70.42;
+
+points = [0, max_disp; max_theta, 0]; % maximum extension and rotation
 
 figure;
 
