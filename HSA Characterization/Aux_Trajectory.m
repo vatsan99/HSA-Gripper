@@ -6,7 +6,7 @@ max_theta = 70.42; % in degress
 
 points = [0, max_disp; max_theta, 0]; % maximum extension and rotation
 
-figure;
+figure()
 
 x = 0:500;
 
@@ -22,9 +22,9 @@ y1 = 0.2512.*x + points(1, 2);
 y2 = 0.2512.*(x - points(2, 1));
 
 hold on
-plot(x, y1, '-', 'LineWidth', 1.5, 'DisplayName', 'Parallel Line 1')
+plot(x, y1, '-', 'LineWidth', 1.5, 'HandleVisibility', 'off')
 hold on
-plot(x, y2, '-', 'LineWidth', 1.5, 'DisplayName', 'Parallel Line 2')
+plot(x, y2, '-', 'LineWidth', 1.5, 'HandleVisibility', 'off')
 hold on
 p1 = plot(points(:,1), points(:,2), 'ro', 'MarkerFaceColor', 'r', 'DisplayName', 'Maximum Value');
 hold on
