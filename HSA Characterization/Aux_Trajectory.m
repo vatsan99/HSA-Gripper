@@ -43,6 +43,6 @@ ylim([min(y2) 300]);
 
 x0 = 1000;
 y0 = 650;
-width = 750;
-height = 500;
+width = 500;
+height = 350;
 set(gcf, 'position', [x0, y0, width, height])
