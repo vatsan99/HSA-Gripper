@@ -28,7 +28,7 @@ plot(x, y2, '-', 'LineWidth', 1.5, 'DisplayName', 'Parallel Line 2')
 hold on
 p1 = plot(points(:,1), points(:,2), 'ro', 'MarkerFaceColor', 'r', 'DisplayName', 'Maximum Value');
 hold on
-plot(x, z, 'k--', 'LineWidth', 0.1); % Zero line
+plot(x, z, 'k--', 'LineWidth', 0.1, 'HandleVisibility', 'off'); % Zero line
 
 
 legend('Location','Northwest')
