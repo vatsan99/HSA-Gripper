@@ -12,6 +12,7 @@ x = 0:500;
 
 y = 0.2512 * x;
 
+z = zeros(501, 1);
 
 p2 = plot(x, y, 'k-', 'LineWidth', 1.5, 'DisplayName', 'Auxetic Trajectory');
 
@@ -26,6 +27,8 @@ hold on
 plot(x, y2, '-', 'LineWidth', 1.5, 'DisplayName', 'Parallel Line 2')
 hold on
 p1 = plot(points(:,1), points(:,2), 'ro', 'MarkerFaceColor', 'r', 'DisplayName', 'Maximum Value');
+hold on
+plot(x, z, 'k--', 'LineWidth', 0.1); % Zero line
 
 
 legend('Location','Northwest')
@@ -33,13 +36,13 @@ legend('Location','Northwest')
 xlabel('Rotation [\theta]')
 ylabel('Extension [mm]')
 
-xlim([0 700]);
-ylim([0 300]);
+xlim([min(x) max(x)]);
+ylim([min(y2) 300]);
 
 % figure size
 
 x0 = 1000;
 y0 = 650;
-width = 550;
-height = 400;
+width = 750;
+height = 500;
 set(gcf, 'position', [x0, y0, width, height])
