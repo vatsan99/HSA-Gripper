@@ -1,7 +1,7 @@
 close all
 clc
 
-points = [0, 150; 180, 0];
+points = [0, 70; 95, 0];
 
 
 figure;
