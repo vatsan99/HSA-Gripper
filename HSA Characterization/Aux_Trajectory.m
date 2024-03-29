@@ -1,20 +1,17 @@
 close all
 clc
 
-max_disp = 45.34;
-max_theta = 70.42;
+max_disp = 45.34; % in mm
+max_theta = 70.42; % in degress
 
 points = [0, max_disp; max_theta, 0]; % maximum extension and rotation
 
 figure;
 
-p1 = plot(points(:,1), points(:,2), 'ro', 'MarkerFaceColor', 'r', 'DisplayName', 'Max. values');
-
 x = 0:500;
 
 y = 0.2512 * x;
 
-hold on
 
 p2 = plot(x, y, 'k-', 'LineWidth', 1.5, 'DisplayName', 'Auxetic Trajectory');
 
@@ -27,12 +24,22 @@ hold on
 plot(x, y1, '-', 'LineWidth', 1.5, 'DisplayName', 'Parallel Line 1')
 hold on
 plot(x, y2, '-', 'LineWidth', 1.5, 'DisplayName', 'Parallel Line 2')
+hold on
+p1 = plot(points(:,1), points(:,2), 'ro', 'MarkerFaceColor', 'r', 'DisplayName', 'Maximum Value');
 
 
-legend()
+legend('Location','Northwest')
 
 xlabel('Rotation [\theta]')
 ylabel('Extension [mm]')
 
-xlim([0 800]);
-ylim([0 500]);
+xlim([0 700]);
+ylim([0 300]);
+
+% figure size
+
+x0 = 1000;
+y0 = 650;
+width = 550;
+height = 400;
+set(gcf, 'position', [x0, y0, width, height])
