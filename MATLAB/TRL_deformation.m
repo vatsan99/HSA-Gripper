@@ -16,10 +16,10 @@ figure
 % plot(x2,y_fit1,'r-','LineWidth',1.5)
 % hold on
 % subplot(2,1,1)
-plot(t_n,disp,'r^','MarkerSize',3,'LineWidth',1.5, "MarkerFaceColor", 'r')
+plot(t_n, (0.01)./disp,'r^','MarkerSize',3,'LineWidth',1.5, "MarkerFaceColor", 'r')
 % legend
-xlim([0 80])
-ylim([0 30])
+% xlim([0 80])
+% ylim([0 30])
 legend('TR-SLL - (F = 0.01 N)')
 % grid on
 
@@ -27,7 +27,7 @@ legend('TR-SLL - (F = 0.01 N)')
 
 
 xlabel('Number of Triangles [-]')
-ylabel(' Displacement as a percentage of length [%]')
+ylabel('Stiffness [N/mm]')
 title({'In-Plane Deformation: TR-SLL (F = 0.01 N)';'Simulated Data'}) 
 
 x0 = 900;
