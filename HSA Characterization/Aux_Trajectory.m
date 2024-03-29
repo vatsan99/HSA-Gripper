@@ -1,14 +1,13 @@
 close all
 clc
 
-points = [0, 70; 95, 0];
-
+points = [0, 60; 200, 0]; % maximum extension and rotation
 
 figure;
 
-p1 = plot(points(:,1), points(:,2), 'ko', 'MarkerFaceColor', 'r', 'DisplayName', 'Max. values');
+p1 = plot(points(:,1), points(:,2), 'ro', 'MarkerFaceColor', 'r', 'DisplayName', 'Max. values');
 
-x = 0:300;
+x = 0:500;
 
 y = 0.2512 * x;
 
@@ -18,18 +17,19 @@ p2 = plot(x, y, 'k-', 'LineWidth', 1.5, 'DisplayName', 'Auxetic Trajectory');
 
 % Defining parallel lines
 
-y1 = 0.2512.*x(:,250) + 70;
+y1 = 0.2512.*x + points(1, 2);
+y2 = 0.2512.*(x - points(2, 1));
 
 hold on
-plot(x(:,250), y1, 'g-', 'LineWidth', 1.5, 'DisplayName', 'Parallel Line 1')
+plot(x, y1, '-', 'LineWidth', 1.5, 'DisplayName', 'Parallel Line 1')
+hold on
+plot(x, y2, '-', 'LineWidth', 1.5, 'DisplayName', 'Parallel Line 2')
 
 
-
-
-% legend([p1, p2], {'Points', 'Line'}, 'TextColor', 'auto');
+legend()
 
 xlabel('Rotation [\theta]')
 ylabel('Extension [mm]')
 
-% xlim([0 250]);
-% ylim([0 250]);
+xlim([0 800]);
+ylim([0 500]);
