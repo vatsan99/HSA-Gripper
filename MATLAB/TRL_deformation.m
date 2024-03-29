@@ -28,7 +28,7 @@ legend('TR-SLL - (F = 0.01 N)')
 
 xlabel('Number of Triangles [-]')
 ylabel('Stiffness [N/mm]')
-title({'In-Plane Deformation: TR-SLL (F = 0.01 N)';'Simulated Data'}) 
+title({'In-Plane Stiffness: TR-SLL (F = 0.01 N)';'Simulated Data'}) 
 
 x0 = 900;
 y0 = 600;
@@ -56,7 +56,7 @@ y_fit = polyval(p1,x1);
 % plot(x1,y_fit,'r-','LineWidth',1.5)
 % hold on
 figure()
-plot(t_n1,angle.*(57.2957),'r^','MarkerSize',3,'LineWidth',1.5, "MarkerFaceColor", 'r')
+plot(t_n1, (5./angle),'r^','MarkerSize',3,'LineWidth', 1.5, "MarkerFaceColor", 'r') % torsional stiffness
 legend('TR-SLL - (M = 5 Nmm)')
 % ylim([0 1.6])
 xlim([0 80])
@@ -65,8 +65,8 @@ xlim([0 80])
 
 
 xlabel('Number of Triangles [-]')
-ylabel('Angular Displacement [degrees]')
-title({'Angular Displacement: TR-SLL (M = 5 N mm)';'Simulated Data'})
+ylabel('Torsional Stiffness [Nmm/rad]')
+title({'Torsional Stiffness: TR-SLL (M = 5 N mm)';'Simulated Data'})
 % ylim([0 0.03])
 
 x0 = 1500;
