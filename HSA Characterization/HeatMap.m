@@ -1,48 +1,58 @@
 close all
 clc
 
-max_disp = 45.34; % in mm
-max_theta = 70.42; % in degress
+data = readtable("HSA_ARM_SpringConstantData_Layer3.csv");
+data = table2array(data);
 
-points = [0, max_disp; max_theta, 0]; % maximum extension and rotation
+theta = data(:, 1); % x
+disp = data(:, 2); % y
 
+force_response = data(:, 3); % Z
+torque_response = data(:, 4); % Z
+
+data1 = readtable("HSA_ARM_SpringConstantData_Layer3.csv");
+data1 = table2array(data1);
+
+X = data1(:, 1);
+Y = data1(:, 2);
+Z = data1(:, 3);
+
+% Create a grid
+X_range = linspace(min(X), max(X));
+Y_range = linspace(min(Y), max(Y));
+[X_grid, Y_grid] = meshgrid(X_range, Y_range);
+
+% Interpolate Z onto the grid
+Z_grid = griddata(X, Y, Z, X_grid, Y_grid);
+
+% Create the surface plot
 figure()
-
-x = 0:500;
-
-y = 0.2512 * x;
-
-z = zeros(501, 1);
-
-p2 = plot(x, y, 'k-', 'LineWidth', 1.5, 'DisplayName', 'Auxetic Trajectory');
-
-% Defining parallel lines
-
-y1 = 0.2512.*x + points(1, 2);
-y2 = 0.2512.*(x - points(2, 1));
-
-hold on
-plot(x, y1, '-', 'LineWidth', 1.5, 'HandleVisibility', 'off')
-hold on
-plot(x, y2, '-', 'LineWidth', 1.5, 'HandleVisibility', 'off')
-hold on
-p1 = plot(points(:,1), points(:,2), 'ro', 'MarkerFaceColor', 'r', 'DisplayName', 'Maximum Value');
-hold on
-plot(x, z, 'k--', 'LineWidth', 0.1, 'HandleVisibility', 'off'); % Zero line
-
-
-legend('Location','Northwest')
-
-xlabel('Rotation [\theta]')
-ylabel('Extension [mm]')
-
-xlim([min(x) max(x)]);
-ylim([min(y2) 300]);
-
-% figure size
+surfc(X_grid, Y_grid, Z_grid, 'EdgeColor', "none");
+colormap('jet')
+colorbar;
+box on
+title({'Performance Heat Map';'F = f(x, \theta)'});
+xlabel('Rotation [\theta]');
+ylabel('Displacement [mm]');
+zlabel('Force');
+grid off
+view(0, 90)
 
 x0 = 1000;
 y0 = 650;
-width = 500;
-height = 350;
+width = 550;
+height = 380;
 set(gcf, 'position', [x0, y0, width, height])
+
+fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Plot Images', 'HeatMap_Force.png');
+
+saveas(gcf, fullFilePath)
+
+
+% Create the contour plot
+% figure()
+% contourf(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
+% colormap('jet')
+% title('Contour Plot');
+% xlabel('X');
+% ylabel('Y');
