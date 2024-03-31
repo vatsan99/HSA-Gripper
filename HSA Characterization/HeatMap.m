@@ -1,7 +1,7 @@
 close all
 clc
 
-data = readtable("HSA_ARM_SpringConstantData_Layer3.csv");
+data = readtable("HSA_ARM_SpringConstantData_Layer3.csv"); % processed raw data
 data = table2array(data);
 
 theta = data(:, 1); % x
@@ -9,9 +9,6 @@ disp = data(:, 2); % y
 
 force_response = data(:, 3); % z
 torque_response = data(:, 4); % z
-
-data1 = readtable("HSA_ARM_SpringConstantData_Layer3.csv");
-data1 = table2array(data1);
 
 X = theta;
 Y = disp;
@@ -29,7 +26,7 @@ Z_grid = griddata(X, Y, Z, X_grid, Y_grid);
 
 % Create the surface plot
 figure()
-surfc(X_grid, Y_grid, Z_grid, 'EdgeColor', "none");
+surfc(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
 colormap('jet')
 colorbar;
 box on
@@ -52,9 +49,9 @@ saveas(gcf, fullFilePath)
 
 
 % Create the contour plot
-% figure()
-% contourf(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
-% colormap('jet')
-% title('Contour Plot');
-% xlabel('X');
-% ylabel('Y');
+figure()
+contourf(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
+colormap('jet')
+title('Contour Plot');
+xlabel('X');
+ylabel('Y');
