@@ -17,7 +17,7 @@ stress_avgAr = table2array(stress_avg);
 figure()
 box on
 
-plot(t_nAr,stress_avgAr,'r^','MarkerSize',4, 'MarkerFaceColor', 'r')
+plot(t_nAr,stress_avgAr,'r^','MarkerSize', 3, 'LineWidth', 1.5, "MarkerFaceColor", 'r')
 % figure()
 % hold on
 % plot(t_nAr,stress_avgAr,'ro-','MarkerSize',6)
@@ -40,6 +40,6 @@ width = 500;
 height = 350;
 set(gcf, 'position', [x0, y0, width, height])
 
-fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Figures', 'Avg-Stress.png');
+fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Plot Images', 'TR-SLL-Avg_Stress.png');
 
 saveas(gcf, fullFilePath)

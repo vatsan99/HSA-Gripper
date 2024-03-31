@@ -16,7 +16,7 @@ figure
 % plot(x2,y_fit1,'r-','LineWidth',1.5)
 % hold on
 % subplot(2,1,1)
-plot(t_n, (0.01)./disp,'r^','MarkerSize',3,'LineWidth',1.5, "MarkerFaceColor", 'r')
+plot(t_n, (0.01)./disp,'r^','MarkerSize', 3,'LineWidth', 1.5, "MarkerFaceColor", 'r')
 % legend
 % xlim([0 80])
 % ylim([0 30])
@@ -36,7 +36,7 @@ width = 500;
 height = 350;
 set(gcf, 'position', [x0, y0, width, height])
 
-fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Figures', 'TR-SLL-in-plane.png');
+fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Plot Images', 'TR-SLL-in_plane.png');
 
 saveas(gcf, fullFilePath)
 
@@ -56,7 +56,7 @@ y_fit = polyval(p1,x1);
 % plot(x1,y_fit,'r-','LineWidth',1.5)
 % hold on
 figure()
-plot(t_n1, (5./angle),'r^','MarkerSize',3,'LineWidth', 1.5, "MarkerFaceColor", 'r') % torsional stiffness
+plot(t_n1, (5./angle),'r^','MarkerSize', 3,'LineWidth', 1.5, "MarkerFaceColor", 'r') % torsional stiffness
 legend('TR-SLL - (M = 5 Nmm)')
 % ylim([0 1.6])
 xlim([0 80])
@@ -77,6 +77,6 @@ set(gcf, 'position', [x0, y0, width, height])
 
 shg
 
-fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Figures', 'TR-SLL-out-of-plane.png');
+fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Plot Images', 'TR-SLL-out_of_plane.png');
 
 saveas(gcf, fullFilePath)

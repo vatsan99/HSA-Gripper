@@ -1,53 +1,48 @@
 close all
 clc
 
+max_disp = 45.34; % in mm
+max_theta = 70.42; % in degress
 
-data = readtable("HSA_ARM_SpringConstantData_Layer3.csv");
-data = table2array(data);
-
-theta = data(:, 1);
-disp = data(:, 2);
-variable = data(:, 3);
+points = [0, max_disp; max_theta, 0]; % maximum extension and rotation
 
 figure()
-scatter3(theta, disp, variable, [], variable, 'filled')
-colorbar % Adds a colorbar to the figure
-title('Performance')
 
-xlabel('Theta')
-ylabel('Displacement')
-zlabel('Variable')
+x = 0:500;
+
+y = 0.2512 * x;
+
+z = zeros(501, 1);
+
+p2 = plot(x, y, 'k-', 'LineWidth', 1.5, 'DisplayName', 'Auxetic Trajectory');
+
+% Defining parallel lines
+
+y1 = 0.2512.*x + points(1, 2);
+y2 = 0.2512.*(x - points(2, 1));
+
+hold on
+plot(x, y1, '-', 'LineWidth', 1.5, 'HandleVisibility', 'off')
+hold on
+plot(x, y2, '-', 'LineWidth', 1.5, 'HandleVisibility', 'off')
+hold on
+p1 = plot(points(:,1), points(:,2), 'ro', 'MarkerFaceColor', 'r', 'DisplayName', 'Maximum Value');
+hold on
+plot(x, z, 'k--', 'LineWidth', 0.1, 'HandleVisibility', 'off'); % Zero line
 
 
-data1 = readtable("HSA_ARM_SpringConstantData_Layer3.csv");
-data1 = table2array(data1);
+legend('Location','Northwest')
 
-X = data1(:, 1);
-Y = data1(:, 2);
-Z = data1(:, 3);
+xlabel('Rotation [\theta]')
+ylabel('Extension [mm]')
 
-% Create a grid
-X_range = linspace(min(X), max(X));
-Y_range = linspace(min(Y), max(Y));
-[X_grid, Y_grid] = meshgrid(X_range, Y_range);
+xlim([min(x) max(x)]);
+ylim([min(y2) 300]);
 
-% Interpolate Z onto the grid
-Z_grid = griddata(X, Y, Z, X_grid, Y_grid);
+% figure size
 
-% Create the surface plot
-figure()
-surfc(X_grid, Y_grid, Z_grid, 'EdgeColor', "none");
-box on
-title('Surface Plot');
-xlabel('Displacement [mm]');
-ylabel('Rotation [\theta]');
-zlabel('Force');
-colorbar
-grid off
-
-% Create the contour plot
-figure()
-contourf(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
-title('Contour Plot');
-xlabel('X');
-ylabel('Y');
+x0 = 1000;
+y0 = 650;
+width = 500;
+height = 350;
+set(gcf, 'position', [x0, y0, width, height])
