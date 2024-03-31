@@ -7,15 +7,17 @@ data = table2array(data);
 theta = data(:, 1); % x
 disp = data(:, 2); % y
 
-force_response = data(:, 3); % Z
-torque_response = data(:, 4); % Z
+force_response = data(:, 3); % z
+torque_response = data(:, 4); % z
 
 data1 = readtable("HSA_ARM_SpringConstantData_Layer3.csv");
 data1 = table2array(data1);
 
-X = data1(:, 1);
-Y = data1(:, 2);
-Z = data1(:, 3);
+X = theta;
+Y = disp;
+
+Z = force_response;
+Z1 = torque_response;
 
 % Create a grid
 X_range = linspace(min(X), max(X));
