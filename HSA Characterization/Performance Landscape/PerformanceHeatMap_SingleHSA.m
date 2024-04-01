@@ -9,8 +9,11 @@ data = table2array(data);
 theta = data(:, 4).*(-1); % x
 disp = data(:, 2); % y
 
-force_response = data(:, 3); % z
+force_response = data(:, 3).*0.001; % z - convert to N (from mN)
 torque_response = data(:, 5); % z
+
+force_sectional_HSA = data(:, 3).*0.001; % z - convert to N (from mN)
+torque_sectional_HSA = data(:, 5); % z
 
 X = theta;
 Y = disp;
@@ -26,42 +29,31 @@ Y_range = linspace(min(Y), max(Y));
 % Interpolate Z onto the grid
 Z_grid = griddata(X, Y, Z, X_grid, Y_grid);
 
-% Create the surface plot
-figure()
+% Create the surface plot: Force Heat Map (Single HSA)
+subplot(2, 3, 1)
 surfc(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
 colormap('turbo')
 colorbar;
 box on
-title({'Performance Heat Map';'F = f(y, \theta)'});
+title({'Single HSA';'Force, F as a function of y and \theta'});
 xlabel('Rotation, \theta [degrees]');
 ylabel('Extension, y [mm]');
-zlabel('Force [mN]');
-
+zlabel('Force [N]');
 grid off
 view(0, 90)
 
-x0 = 950;
-y0 = 350;
-width = 500;
-height = 380;
-set(gcf, 'position', [x0, y0, width, height])
+% Heat Map: Torque (Single HSA)
 
-% fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Plot Images', 'HeatMap_Force.png');
+Z1_grid = griddata(X, Y, Z1, X_grid, Y_grid); % Interpolated torque data
 
-% saveas(gcf, fullFilePath)
-
-
-% Create the contour plot
-figure()
-contourf(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
+subplot(2, 3, 4)
+surfc(X_grid, Y_grid, Z1_grid, 'EdgeColor', 'none');
 colormap('turbo')
 colorbar;
-title('Contour Plot');
-xlabel('X');
-ylabel('Y');
-
-x0 = 450;
-y0 = 350;
-width = 510;
-height = 380;
-set(gcf, 'position', [x0, y0, width, height])
+box on
+title({'Single HSA';'Torque, \tau as a function of y and \theta'});
+xlabel('Rotation, \theta [degrees]');
+ylabel('Extension, y [mm]');
+zlabel('Torque [Nmm]');
+grid off
+view(0, 90)
