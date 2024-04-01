@@ -1,14 +1,14 @@
 close all
 clc
 
-data = readtable("HSA_ARM_SpringConstantData_Layer3.csv"); % processed raw data
+data = readtable(".\PerformanceLandscape\0to35mm_0to130deg_NRGLandscape_1.csv"); % processed raw data
 data = table2array(data);
 
-theta = data(:, 1); % x
+theta = data(:, 4); % x
 disp = data(:, 2); % y
 
 force_response = data(:, 3); % z
-torque_response = data(:, 4); % z
+torque_response = data(:, 5); % z
 
 X = theta;
 Y = disp;
@@ -30,28 +30,35 @@ surfc(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
 colormap('jet')
 colorbar;
 box on
-title({'Performance Heat Map';'F = f(x, \theta)'});
-xlabel('Rotation [\theta]');
-ylabel('Displacement [mm]');
-zlabel('Force');
+title({'Performance Heat Map';'F = f(y, \theta)'});
+xlabel('Rotation, \theta [degrees]');
+ylabel('Extension, y [mm]');
+zlabel('Force [mN]');
 grid off
 view(0, 90)
 
-x0 = 1000;
-y0 = 650;
-width = 550;
+x0 = 950;
+y0 = 350;
+width = 500;
 height = 380;
 set(gcf, 'position', [x0, y0, width, height])
 
-fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Plot Images', 'HeatMap_Force.png');
+% fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Plot Images', 'HeatMap_Force.png');
 
-saveas(gcf, fullFilePath)
+% saveas(gcf, fullFilePath)
 
 
 % Create the contour plot
 figure()
 contourf(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
 colormap('jet')
+colorbar;
 title('Contour Plot');
 xlabel('X');
 ylabel('Y');
+
+x0 = 450;
+y0 = 350;
+width = 510;
+height = 380;
+set(gcf, 'position', [x0, y0, width, height])
