@@ -27,14 +27,15 @@ Z_grid = griddata(X, Y, Z, X_grid, Y_grid);
 % Create the surface plot
 figure()
 surfc(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
-colormap('jet')
+colormap('turbo')
 colorbar;
 box on
 title({'Performance Heat Map';'F = f(y, \theta)'});
 xlabel('Rotation, \theta [degrees]');
 ylabel('Extension, y [mm]');
 zlabel('Force [mN]');
-grid on
+
+grid off
 view(0, 90)
 
 x0 = 950;
@@ -51,7 +52,7 @@ set(gcf, 'position', [x0, y0, width, height])
 % Create the contour plot
 figure()
 contourf(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
-colormap('jet')
+colormap('turbo')
 colorbar;
 title('Contour Plot');
 xlabel('X');
@@ -64,3 +65,11 @@ height = 380;
 set(gcf, 'position', [x0, y0, width, height])
 
 % Double / Sectional HSA
+
+data_sectional_HSA = readtable(".\HSAFingerSeperateParts.csv");
+
+disp_sectional_HSA = table2array(data_sectional_HSA(:, 2));
+theta_sectional_HSA = table2array(data_sectional_HSA(:, 4).*(-1)); % x
+
+force_sectional_HSA = table2array(data_sectional_HSA(:, 3)); % z
+torque_sectional_HSA = table2array(data_sectional_HSA(:, 5)); % z
