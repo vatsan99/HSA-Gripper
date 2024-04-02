@@ -57,11 +57,6 @@ zlabel('Torque [Nmm]');
 grid off
 view(0, 90)
 
-
-
-
-
-
 % - Performance Difference - %
 
 z2 = force_double_HSA - force_response(1:2725); % Double HSA - Single HSA

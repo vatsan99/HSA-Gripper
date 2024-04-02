@@ -42,7 +42,6 @@ for i = 1:4
     % view(0, 90)
 end
 
-
 % figure size
 x0 = 300;
 y0 = 150;
