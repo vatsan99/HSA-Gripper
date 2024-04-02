@@ -3,7 +3,7 @@ clc
 
 % Single HSA Heat Map
 
-data = readtable(".\0to35mm_0to130deg_NRGLandscape_1.csv"); % processed raw data: Single HSA
+data = readtable(".\Single-HSA-Raw-Data"); % processed raw data: Single HSA
 data = table2array(data);
 
 theta = data(:, 4).*(-1); % x
