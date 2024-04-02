@@ -105,10 +105,10 @@ view(0, 90)
 
 % figure size
 
-x0 = 950;
-y0 = 410;
-width = 1500;
-height = 750;
+x0 = 300;
+y0 = 200;
+width = 950;
+height = 500;
 set(gcf, 'position', [x0, y0, width, height])
 
 fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Plot Images', 'PerformanceHeatMap.png');
