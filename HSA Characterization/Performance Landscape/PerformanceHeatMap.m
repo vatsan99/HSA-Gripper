@@ -31,7 +31,7 @@ z_grid = griddata(x, y, z, x_grid, y_grid);
 
 subplot(2, 3, 2)
 surfc(x_grid, y_grid, z_grid, 'EdgeColor', 'none');
-colormap('turbo')
+colormap('autumn')
 colorbar;
 box on
 title({'Double HSA';'Force, F as a function of y and \theta'});
@@ -47,7 +47,7 @@ z1_grid = griddata(x, y, z1, x_grid, y_grid);
 
 subplot(2, 3, 5)
 surfc(x_grid, y_grid, z1_grid, 'EdgeColor', 'none');
-colormap('turbo')
+colormap('autumn')
 colorbar;
 box on
 title({'Double HSA';'Torque, \tau as a function of y and \theta'});
@@ -73,7 +73,7 @@ z2_grid = griddata(x, y, z2, x_grid, y_grid);
 
 subplot(2, 3, 3)
 surfc(x_grid, y_grid, z2_grid, 'EdgeColor', 'none');
-colormap('turbo')
+colormap('autumn')
 colorbar;
 box on
 title({'Performance Difference';'Force, F as a function of y and \theta'});
@@ -92,7 +92,7 @@ z3_grid = griddata(x, y, z3, x_grid, y_grid);
 
 subplot(2, 3, 6)
 surfc(x_grid, y_grid, z3_grid, 'EdgeColor', 'none');
-colormap('turbo')
+colormap('autumn')
 colorbar;
 box on
 title({'Performance Difference';'Torque, \tau as a function of y and \theta'});
@@ -106,10 +106,10 @@ view(0, 90)
 % figure size
 
 x0 = 300;
-y0 = 200;
-width = 950;
-height = 500;
+y0 = 150;
+width = 1200;
+height = 600;
 set(gcf, 'position', [x0, y0, width, height])
 
-fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Plot Images', 'PerformanceHeatMap.png');
-saveas(gcf, fullFilePath)
+% fullFilePath = fullfile('D:\Srivatsan\HSA-gripper-files\Plot Images', 'PerformanceHeatMap.png');
+% saveas(gcf, fullFilePath)
