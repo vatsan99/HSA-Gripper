@@ -1,7 +1,7 @@
 close all
 clc
 
-run('PerformanceHeatMap_SingleHSA.m') % processes and plots data from Single HSA raw data
+run('SingleHSAPerformance.m') % processes and plots data from Single HSA raw data
 
 
 data_double_HSA = table2array(readtable(".\HSAFingerSeperateParts.csv")); % processed raw data: Double HSA
