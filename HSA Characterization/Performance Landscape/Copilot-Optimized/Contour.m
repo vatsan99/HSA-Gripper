@@ -4,12 +4,12 @@ clc
 data_files = [".\0to35mm_0to130deg_NRGLandscape_1.csv", ".\HSAFingerSeperateParts.csv"];
 titles = {'Single HSA', 'Double HSA'};
 
-% Loop over the data files
+
 for i = 1:length(data_files)
-    % Load the data
+
     data = table2array(readtable(data_files{i}));
 
-    % Extract the variables
+
     theta = data(:, 4).*(-1); % x
     disp = data(:, 2); % y
     force_response = data(:, 3).*0.001; % z - convert to N (from mN)
@@ -24,7 +24,6 @@ for i = 1:length(data_files)
     Z_grid = griddata(theta, disp, force_response, X_grid, Y_grid);
     Z1_grid = griddata(theta, disp, torque_response, X_grid, Y_grid);
 
-    % Create the surface plot: Force Heat Map
     subplot(2, 3, i)
     contourf(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none');
     colormap('turbo')
@@ -51,10 +50,6 @@ for i = 1:length(data_files)
     view(0, 90)
 end
 
-
-
-
-% figure size
 
 x0 = 950;
 y0 = 410;
