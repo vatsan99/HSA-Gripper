@@ -15,7 +15,10 @@ x = theta_double_HSA;
 y = disp_double_HSA;
 
 z = {force_double_HSA, torque_double_HSA, force_double_HSA - force_response(1:2725), torque_double_HSA - torque_response(1:2725)};
-titles = {{'Double HSA';'Force, F as a function of y and \theta'}, {'Double HSA';'Torque, \tau as a function of y and \theta'}, {'Performance Difference';'Force, F as a function of y and \theta'}, {'Performance Difference';'Torque, \tau as a function of y and \theta'}};
+titles = {{'Double HSA';'Force, F as a function of y and \theta'}
+        {'Double HSA';'Torque, \tau as a function of y and \theta'}
+        {'Performance Difference';'Force, F as a function of y and \theta'}
+        {'Performance Difference';'Torque, \tau as a function of y and \theta'}};
 zlabels = {'Force [N]', 'Torque [Nmm]', 'Force [N]', 'Torque [Nmm]'};
 
 % Create a grid
