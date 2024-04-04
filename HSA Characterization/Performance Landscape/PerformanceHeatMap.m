@@ -31,7 +31,7 @@ z_grid = griddata(x, y, z, x_grid, y_grid);
 
 subplot(2, 3, 2)
 surfc(x_grid, y_grid, z_grid, 'EdgeColor', 'none');
-colormap('autumn')
+colormap('summer')
 colorbar;
 box on
 title({'Double HSA';'Force, F as a function of y and \theta'});
@@ -47,7 +47,7 @@ z1_grid = griddata(x, y, z1, x_grid, y_grid);
 
 subplot(2, 3, 5)
 surfc(x_grid, y_grid, z1_grid, 'EdgeColor', 'none');
-colormap('autumn')
+colormap('summer')
 colorbar;
 box on
 title({'Double HSA';'Torque, \tau as a function of y and \theta'});
@@ -66,17 +66,17 @@ z2_grid = griddata(x, y, z2, x_grid, y_grid);
 
 % Create the surface plot: Force Heat Map (Double HSA)
 
-subplot(2, 3, 3)
-surfc(x_grid, y_grid, z2_grid, 'EdgeColor', 'none');
-colormap('autumn')
-colorbar;
-box on
-title({'Performance Difference';'Force, F as a function of y and \theta'});
-xlabel('Rotation, \theta [degrees]');
-ylabel('Extension, y [mm]');
-zlabel('Force [N]');
-grid off
-view(0, 90)
+% subplot(2, 3, 3)
+% surfc(x_grid, y_grid, z2_grid, 'EdgeColor', 'none');
+% colormap('summer')
+% colorbar;
+% box on
+% title({'Performance Difference';'Force, F as a function of y and \theta'});
+% xlabel('Rotation, \theta [degrees]');
+% ylabel('Extension, y [mm]');
+% zlabel('Force [N]');
+% grid off
+% view(0, 90)
 
 z3 = torque_double_HSA - torque_response(1:2725); % Double HSA - Single HSA
 
@@ -85,17 +85,17 @@ z3_grid = griddata(x, y, z3, x_grid, y_grid);
 
 % Create the surface plot: Force Heat Map (Double HSA)
 
-subplot(2, 3, 6)
-surfc(x_grid, y_grid, z3_grid, 'EdgeColor', 'none');
-colormap('autumn')
-colorbar;
-box on
-title({'Performance Difference';'Torque, \tau as a function of y and \theta'});
-xlabel('Rotation, \theta [degrees]');
-ylabel('Extension, y [mm]');
-zlabel('Torque [Nmm]');
-grid off
-view(0, 90)
+% subplot(2, 3, 6)
+% surfc(x_grid, y_grid, z3_grid, 'EdgeColor', 'none');
+% colormap('summer')
+% colorbar;
+% box on
+% title({'Performance Difference';'Torque, \tau as a function of y and \theta'});
+% xlabel('Rotation, \theta [degrees]');
+% ylabel('Extension, y [mm]');
+% zlabel('Torque [Nmm]');
+% grid off
+% view(0, 90)
 
 
 % figure size
