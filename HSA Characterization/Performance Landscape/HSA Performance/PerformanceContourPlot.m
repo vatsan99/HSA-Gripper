@@ -146,8 +146,11 @@ hcb.Position = hcb.Position + [0.12 0 0 0];
 title_handle = get(hcb, 'Title');
 title_string = {'\tau [Nmm]'};
 set(title_handle ,'String', title_string);
-% figure size
 
+
+
+
+% figure size
 
 x0 = 900;
 y0 = 410;
@@ -155,41 +158,3 @@ width = 800;
 height = 550;
 set(gcf, 'position', [x0, y0, width, height])
 exportgraphics(gcf, 'D:\Srivatsan\HSA-gripper-files\Plot Images\PerformanceContour.png', 'Resolution', 800)
-
-max_disp = max(disp); % in mm
-max_theta = max(theta); % in degress
-
-points = [0, max_disp; max_theta, 0]; % maximum extension and rotation
-
-hold on
-
-x = 0:500;
-
-y = 0.2512 * x;
-
-z = zeros(501, 1);
-
-p2 = plot(x, y, 'k-', 'LineWidth', 1.5, 'DisplayName', 'Auxetic Trajectory');
-
-% Defining parallel lines
-
-y1 = 0.2512.*x + points(1, 2);
-y2 = 0.2512.*(x - points(2, 1));
-
-hold on
-plot(x, y1, '-', 'LineWidth', 1.5, 'HandleVisibility', 'off')
-hold on
-plot(x, y2, '-', 'LineWidth', 1.5, 'HandleVisibility', 'off')
-hold on
-p1 = plot(points(:,1), points(:,2), 'ro', 'MarkerFaceColor', 'r', 'DisplayName', 'Maximum Value');
-hold on
-plot(x, z, 'k--', 'LineWidth', 0.1, 'HandleVisibility', 'off'); % Zero line
-
-
-legend('Location', 'best')
-
-xlabel('Rotation [\theta]')
-ylabel('Extension [mm]')
-
-xlim([min(x) max(x)]);
-ylim([min(y2) 300]);
