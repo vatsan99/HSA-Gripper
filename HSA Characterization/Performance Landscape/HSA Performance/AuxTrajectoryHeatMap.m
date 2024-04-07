@@ -1,12 +1,12 @@
 close all
 clc
 
-data_files = ["HSA-Peformance_Test-3Apr-SingleHSA.csv", "HSA-Peformance_Test-3Apr-DoubleHSA.csv", "HSAGripper-TestSet2-4Apr-8RowHSA.csv"];
+data_files = ["HSA-Peformance_Test-3Apr-SingleHSA.csv", "HSAGripper-TestSet2-7Apr-DoubleHSA.csv", "HSAGripper-TestSet2-5Apr-8RowHSA.csv"];
 
 % Plot Parameters
 
 specified_points = [40 2; 20 30; 40 15]; % Probe Points
-aux_trajectory = {0.2512, 0.1, 0.5}; % Slope of Trajectory Lines
+aux_trajectory = {0.2512, 0, 0}; % Slope of Trajectory Lines
 
 titles = {'Monolithic HSA', 'Stacked HSA', 'Standard 8-Row HSA'};
 cm = 'summer';
@@ -92,17 +92,17 @@ for i = 1:length(data_files)
     end
     if i == 2
         hold on
-        plot(x, y2, 'k--', 'LineWidth', 0.8, 'DisplayName', 'Auxetic Trajectory');
+        plot(x, y2, 'k--', 'LineWidth', 0.8, 'HandleVisibility', 'off');
     end
     if i == 3
         hold on
-        plot(x, y3, 'k--', 'LineWidth', 0.8, 'DisplayName', 'Auxetic Trajectory');
+        plot(x, y3, 'k--', 'LineWidth', 0.8, 'HandleVisibility', 'off');
     end
         
     legend('Location', 'northwest', 'FontSize', 8)
     legend('boxoff')
 
-    xlabel('Rotation [\theta]')
+    xlabel('Rotation, \theta [degrees]')
     ylabel('Extension [mm]')
 
     xlim([min(X_range) max(X_range)]);
@@ -156,6 +156,7 @@ for i = 1:length(data_files)
     colormap(cm)
     subplot(2, 3, i+3)
     contourf(X_grid, Y_grid, Z1_grid, 'EdgeColor', 'none', 'EdgeColor', 'none');
+
     % Probes
     % for j = 1:size(specified_points, 1)
     %     specified_X = specified_points(j, 1);
@@ -185,7 +186,6 @@ hcb.Position = hcb.Position + [0.12 0 0 0];
 title_handle = get(hcb, 'Title');
 title_string = {'\tau [Nmm]'};
 set(title_handle ,'String', title_string);
-
 
 
 
