@@ -1,7 +1,9 @@
 close all
 clc
 
-data_files = ["HSA-Peformance_Test-3Apr-SingleHSA.csv", "HSAGripper-TestSet2-7Apr-DoubleHSA.csv", "HSAGripper-TestSet2-5Apr-8RowHSA.csv"];
+data_files = ["HSA-Peformance_Test-3Apr-SingleHSA.csv"
+            "HSAGripper-TestSet2-7Apr-DoubleHSA.csv"
+            "HSAGripper-TestSet2-5Apr-8RowHSA.csv"];
 
 % Plot Parameters
 
@@ -11,7 +13,8 @@ aux_trajectory = {0.2512, 0, 0}; % Slope of Trajectory Lines
 titles = {'Monolithic HSA', 'Stacked HSA', 'Standard 8-Row HSA'};
 cm = 'summer';
 
-% Loop over the data files
+% Heat Map: Force
+
 for i = 1:length(data_files)
     % Load the data
     data = table2array(readtable(data_files{i}));
@@ -186,6 +189,8 @@ hcb.Position = hcb.Position + [0.12 0 0 0];
 title_handle = get(hcb, 'Title');
 title_string = {'\tau [Nmm]'};
 set(title_handle ,'String', title_string);
+
+
 
 
 
