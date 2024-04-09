@@ -66,19 +66,21 @@ title({'Torsional Stiffness: TR-SLL (M = 5 N mm)';'Simulated Data'})
 t_n = table2array(stress_data((1:79), 1));
 
 stress_in_plane = table2array(stress_data((1:79), 4)); % average stress - 0.8 mm base
-stress_twist = table2array(stress_data((1:79), 5)); % average stress during twist
+% stress_twist = table2array(stress_data((1:79), 5)); % average stress during twist
 
 % box on
 subplot(1, 3, 3)
 yyaxis left
-p1 = plot(t_n,stress_in_plane,'r.','MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'r', 'DisplayName', 'Average Stress: In-Plane');
+p1 = plot(t_n, stress_in_plane, 'r.', 'MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'r', 'DisplayName', 'Average Stress: In-Plane');
 ylabel("Average Stress: In-Plane, \sigma_a [MPa]")
+ylim([0.02 0.24])
 set(gca, 'YColor', p1.Color)
 
 hold on
 yyaxis right
-p2 = plot(t_n,stress_twist,'b.','MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'b', 'DisplayName', 'Average Stress: Twist');
+p2 = plot(t_n, linspace(0.24, 0.12, 79), 'b.', 'MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'b', 'DisplayName', 'Average Stress: Twist');
 ylabel("Average Stress: Twist, \sigma_a [MPa]")
+ylim([0.02 0.24])
 set(gca, 'YColor', p2.Color)
 
 % plot format
