@@ -1,4 +1,5 @@
 close all
+clear all %#ok
 clc
 
 data_files = ["HSA-Peformance_Test-3Apr-SingleHSA.csv"
@@ -8,13 +9,14 @@ data_files = ["HSA-Peformance_Test-3Apr-SingleHSA.csv"
 % Plot Parameters
 
 specified_points = [40 2; 20 30; 40 15]; % Probe Points
-aux_trajectory = {0.2512, 0, 0}; % Slope of Trajectory Lines
+aux_trajectory = {0.2512, 0, 0.2435}; % Slope of Trajectory Lines
 
 titles = {'Monolithic HSA', 'Stacked HSA', 'Standard 8-Row HSA'};
-cm = 'summer';
+cm = 'parula';
+ticklabels = {'0', '30', '60', '90', '120'};
+tl = [0 30 60 90 120];
 
-% Heat Map: Force
-
+% Loop over the data files
 for i = 1:length(data_files)
     % Load the data
     data = table2array(readtable(data_files{i}));
@@ -53,6 +55,8 @@ for i = 1:length(data_files)
     colormap(cm)
     subplot(2, 3, i)
     contourf(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none', 'HandleVisibility', 'off');
+    xticks(tl)
+    xticklabels(ticklabels)
     
 
     % Probes
@@ -88,18 +92,18 @@ for i = 1:length(data_files)
     y2 = aux_trajectory{2} * x;
     y3 = aux_trajectory{3} * x;
     z = zeros(length(x), 1);
-
+    lw = 0.5;
     if i == 1
         hold on  
-        plot(x, y, 'k--', 'LineWidth', 0.8, 'DisplayName', 'Auxetic Trajectory');
+        plot(x, y, 'k-', 'LineWidth', lw, 'DisplayName', 'Auxetic Trajectory');
     end
     if i == 2
         hold on
-        plot(x, y2, 'k--', 'LineWidth', 0.8, 'HandleVisibility', 'off');
+        plot(x, y2, 'k--', 'LineWidth', lw, 'HandleVisibility', 'off');
     end
     if i == 3
         hold on
-        plot(x, y3, 'k--', 'LineWidth', 0.8, 'HandleVisibility', 'off');
+        plot(x, y3, 'k-', 'LineWidth', lw, 'DisplayName', 'Auxetic Trajectory');
     end
         
     legend('Location', 'northwest', 'FontSize', 8)
@@ -179,6 +183,8 @@ for i = 1:length(data_files)
     ylabel('Extension, y [mm]');
     zlabel('Torque [Nmm]');
     axis tight
+    xticks(tl)
+    xticklabels(ticklabels)
     grid off
     view(0, 90)
 end
@@ -189,9 +195,6 @@ hcb.Position = hcb.Position + [0.12 0 0 0];
 title_handle = get(hcb, 'Title');
 title_string = {'\tau [Nmm]'};
 set(title_handle ,'String', title_string);
-
-
-
 
 
 
