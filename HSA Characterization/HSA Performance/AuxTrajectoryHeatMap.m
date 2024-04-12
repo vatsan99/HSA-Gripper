@@ -1,5 +1,4 @@
 close all
-clear all %#ok
 clc
 
 data_files = ["HSA-Peformance_Test-3Apr-SingleHSA.csv"
@@ -9,7 +8,7 @@ data_files = ["HSA-Peformance_Test-3Apr-SingleHSA.csv"
 % Plot Parameters
 
 specified_points = [40 2; 20 30; 40 15]; % Probe Points
-aux_trajectory = {0.2512, 0, 0.2435}; % Slope of Trajectory Lines
+aux_trajectory = {0.2512, 0.3086, 0.2435}; % Slope of Trajectory Lines
 
 titles = {'Monolithic HSA', 'Stacked HSA', 'Standard 8-Row HSA'};
 cm = 'parula';
@@ -92,21 +91,21 @@ for i = 1:length(data_files)
     y2 = aux_trajectory{2} * x;
     y3 = aux_trajectory{3} * x;
     z = zeros(length(x), 1);
-    lw = 0.5;
+    lw = 0.8;
     if i == 1
         hold on  
-        plot(x, y, 'k-', 'LineWidth', lw, 'DisplayName', 'Auxetic Trajectory');
+        plot(x, y, 'k--', 'LineWidth', lw, 'DisplayName', 'Auxetic Trajectory');
     end
     if i == 2
         hold on
-        plot(x, y2, 'k--', 'LineWidth', lw, 'HandleVisibility', 'off');
+        plot(x, y2, 'k--', 'LineWidth', lw, 'DisplayName', 'Auxetic Trajectory');
     end
     if i == 3
         hold on
-        plot(x, y3, 'k-', 'LineWidth', lw, 'DisplayName', 'Auxetic Trajectory');
+        plot(x, y3, 'k--', 'LineWidth', lw, 'DisplayName', 'Auxetic Trajectory');
     end
         
-    legend('Location', 'northwest', 'FontSize', 8)
+    legend('Location', 'northwest')
     legend('boxoff')
 
     xlabel('Rotation, \theta [degrees]')
@@ -198,11 +197,12 @@ set(title_handle ,'String', title_string);
 
 
 
+
 % figure size
 
 x0 = 900;
 y0 = 410;
-width = 800;
-height = 550;
+width = 860;
+height = 650;
 set(gcf, 'position', [x0, y0, width, height])
 exportgraphics(gcf, 'D:\Srivatsan\HSA-gripper-files\Plot Images\ContourWAuxTraj.png', 'Resolution', 800)
