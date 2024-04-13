@@ -92,6 +92,7 @@ for i = 1:length(data_files)
     y3 = aux_trajectory{3} * x;
     z = zeros(length(x), 1);
     lw = 0.8;
+
     if i == 1
         hold on  
         plot(x, y, 'k--', 'LineWidth', lw, 'DisplayName', 'Auxetic Trajectory');
@@ -194,6 +195,7 @@ hcb.Position = hcb.Position + [0.12 0 0 0];
 title_handle = get(hcb, 'Title');
 title_string = {'\tau [Nmm]'};
 set(title_handle ,'String', title_string);
+
 
 
 
