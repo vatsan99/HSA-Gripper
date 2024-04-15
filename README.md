@@ -1,8 +1,8 @@
 # HSA-Gripper
 
-Developing an auxetic soft robotic gripper using handed shearing auxetics (HSA).
+Developing an auxetic soft robotic gripper using handed shearing auxetics (HSA), and improving their performance by integrating a torsion-resistant structural layer.
 
-To achieve my goals, I utilized 3D modeling and additive manufacturing to design and fabricate gripper structures and assemblies.
+To achieve my goals, I utilized 3D modeling and additive manufacturing to design and fabricate grippers, structures for mounts and assemblies.
 
 Design and Engineering Analysis Software: SolidWorks, Anys Mechanical (FEA)  
 Data Analysis: MATLAB, Python
