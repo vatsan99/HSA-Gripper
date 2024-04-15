@@ -4,8 +4,7 @@ Developing an auxetic soft robotic gripper using handed shearing auxetics (HSA).
 
 To achieve my goals, I utilized 3D modeling and additive manufacturing to design and fabricate gripper structures and assemblies.
 
-Design and Engineering Analysis Software: SolidWorks, Anys Mechanical (FEA) \\
-Data Analysis: MATLAB, Python
+Design and Engineering Analysis Software: SolidWorks, Anys Mechanical (FEA) \newline Data Analysis: MATLAB, Python
 
 Manufacturing/fabrication processes include stereolithography (SLA), fused deposition modeling (FDM), material jetting ($PolyJet^{TM}$).
 
