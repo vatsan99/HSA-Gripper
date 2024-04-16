@@ -7,11 +7,10 @@ stress_data = readtable("TRL-Stress-FEAData");
 
 t_n = table2array(data(:, 1)); % number of triangles
 % disp = table2array(data(2:80, 4)); % in-plane deformation
-disp_08mm = table2array(data(:, 2));
+delta_08mm = table2array(data(:, 2)); % 0.8 mm base
 ms = 15; % marker size
-x2 = linspace(2, 30);
 
-K = 0.01./disp_08mm; % Bending Stiffness = Force applied / deflection
+K = 0.01./delta_08mm; % Bending Stiffness = Force applied / deflection
 
 figure()
 subplot(3, 1, 1)
@@ -29,10 +28,11 @@ title({'Bending Stiffness: TR-SLL (F = 0.01 N)';'Simulated Data'})
 
 data1 = readtable('Torsional-Stiffness-Test.xlsx');
 angle_8 = table2array(data1(:, 15)); % 0.8 mm Base, 25 mm Wide
-kappa = 5./angle_8;
+
+kappa = 5./angle_8; % Torsional stiffness = Moment / angle of rotation
 
 subplot(3, 1, 2)
-plot(t_n, kappa, 'k.', 'MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'k', 'DisplayName', 'TR-SLL: M = 5 Nmm') % Moment / angle of rotation
+plot(t_n, kappa, 'k.', 'MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'k', 'DisplayName', 'TR-SLL: M = 5 Nmm')
 
 legend()
 xlim([0 82])
@@ -45,7 +45,7 @@ title({'Torsional Stiffness: TR-SLL (M = 5 N mm)';'Simulated Data'})
 
 t_n = table2array(stress_data((1:79), 1));
 
-stress_in_plane = table2array(stress_data((1:79), 4)); % average stress - 0.8 mm base
+stress_in_plane = table2array(stress_data((1:79), 4)); % average stress during in-plane bending
 stress_twist = table2array(stress_data((1:79), 5)); % average stress during twist
 
 
