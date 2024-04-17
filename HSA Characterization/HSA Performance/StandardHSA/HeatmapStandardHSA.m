@@ -5,7 +5,7 @@ run('SpringConstantMatrixGripper.m')
 
 %{
     Run SpringConstantMatrixGripper.m to process raw Instron test data. This script utilizes processed data to plot
-    surface plots to generate a heatmap for force, torque, and spring constant (average) for the standard HSA.
+    surface plots to generate a heatmap for force, torque, and spring constant (average) for the standard 8-row HSA.
 %}
 
 ticklabels = {'0', '30', '60', '90', '120'};
