@@ -9,19 +9,21 @@ clc
 
 figure()
 
-gripForce_plot('GripperExtensionTest.csv') %! Replace with actual file name
-
+gripForce('GripperExtensionTest.xlsx') %! Replace with actual file name
 
 % figure size
 
 x0 = 900;
 y0 = 410;
-width = 700;
+width = 500;
 height = 400;
 set(gcf, 'position', [x0, y0, width, height])
 exportgraphics(gcf, 'D:\Srivatsan\HSA-gripper-files\Plot Images\GripForce.png', 'Resolution', 800)
 
-function gripForce_plot(csv_file_path)
+function gripForce(csv_file_path)
+    %{
+        Reads and plots force and extension data from Instron's raw data (.csv)
+    %}
     data = readtable(csv_file_path, "VariableNamingRule", "preserve");
     e_data = data.('Displacement [mm]'); % extension in mm
     f_data = data.('Force [N]'); % force in N
@@ -32,4 +34,5 @@ function gripForce_plot(csv_file_path)
     ylabel('Force [N]')
     legend("Location", "northwest")
     axis tight
+    grid on
 end
