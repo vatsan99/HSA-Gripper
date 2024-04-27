@@ -19,8 +19,8 @@ y = zeros(100);
 plot(x, y, 'k--', 'LineWidth', 0.3, 'HandleVisibility', 'off')
 hold on
 
-ticklabels = {'10', '20', '30', '40', '50', '60', '70', '80', '90', '100'};
-tl = linspace(10, 100, 10);
+tl = 10:10:100;
+ticklabels = cellstr(num2str(tl'));
 
 for i = 1:3
     %{
