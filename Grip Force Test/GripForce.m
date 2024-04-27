@@ -19,6 +19,9 @@ y = zeros(100);
 plot(x, y, 'k--', 'LineWidth', 0.3, 'HandleVisibility', 'off')
 hold on
 
+ticklabels = {'10', '20', '30', '40', '50', '60', '70', '80', '90', '100'};
+tl = linspace(10, 100, 10);
+
 for i = 1:3
     %{
         Reads and plots force and extension data from Instron's raw data (.csv)
@@ -28,15 +31,19 @@ for i = 1:3
     f_data = data.('Force'); % force in N
 
     plot(e_data, f_data, '-', 'LineWidth', 1.5, 'DisplayName', legend_labels{i})
-    title({"Grip Force Test";'HSA Rotation = 90\circ'})
-    xlabel('Extension [mm]')
-    ylabel('Force [N]')
-    xlim([0 100])
-    ylim([-6 12])
-    grid on
     hold on
 end
 
+title({"Grip Force Test";'HSA Rotation = 90\circ'})
+xlabel('Extension [mm]')
+ylabel('Force [N]')
+xlim([0 100])
+ylim([-6 12])
+
+xticks(tl)
+xticklabels(ticklabels)
+
+grid on
 legend('Location', 'southwest')
 
 
