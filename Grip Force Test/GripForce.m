@@ -7,32 +7,44 @@ clc
     Antipodal Grasping: Using opposing forces to grasp the cylinder (opposite points on the surface of the test cylinder)
 %}
 
+imported_data = {'GripforceTestSample_4-NoEcoflexLayer.csv', 'GripforceTestSample_8-PinchGrasp2.csv', 'GripforceTestSample_7-CagingGrasp2'};
+legend_labels = {'Pinch Grasp: No Ecoflex', 'Pinch Grasp', 'Caging Grasp'};
+
+
 figure()
 
-gripForce('GripperExtensionTest.xlsx') %! Replace with actual file name
+% plot zero line
+x = 0:99;
+y = zeros(100);
+plot(x, y, 'k--', 'LineWidth', 0.3, 'HandleVisibility', 'off')
+hold on
+
+for i = 1:3
+    %{
+        Reads and plots force and extension data from Instron's raw data (.csv)
+    %}
+    data = readtable(imported_data{i}, "VariableNamingRule", "preserve");
+    e_data = data.('Displacement'); % extension in mm
+    f_data = data.('Force'); % force in N
+
+    plot(e_data, f_data, '-', 'LineWidth', 1.5, 'DisplayName', legend_labels{i})
+    title({"Grip Force Test";'HSA Rotation = 90\circ'})
+    xlabel('Extension [mm]')
+    ylabel('Force [N]')
+    xlim([0 100])
+    ylim([-6 12])
+    grid on
+    hold on
+end
+
+legend('Location', 'southwest')
+
 
 % figure size
 
 x0 = 900;
 y0 = 410;
-width = 500;
+width = 450;
 height = 400;
 set(gcf, 'position', [x0, y0, width, height])
 exportgraphics(gcf, 'D:\Srivatsan\HSA-gripper-files\Plot Images\GripForce.png', 'Resolution', 800)
-
-function gripForce(csv_file_path)
-    %{
-        Reads and plots force and extension data from Instron's raw data (.csv)
-    %}
-    data = readtable(csv_file_path, "VariableNamingRule", "preserve");
-    e_data = data.('Displacement [mm]'); % extension in mm
-    f_data = data.('Force [N]'); % force in N
-
-    plot(e_data, f_data, '-', 'LineWidth', 2, 'DisplayName', 'Antipodal Grasp')
-    title({"Grip Force Test";'HSA Rotation = 90\circ'})
-    xlabel('Extension [mm]')
-    ylabel('Force [N]')
-    legend("Location", "northwest")
-    axis tight
-    grid on
-end
