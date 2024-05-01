@@ -24,8 +24,13 @@ y = zeros(100);
 % plot(x, y, 'k--', 'LineWidth', 0.5, 'HandleVisibility', 'off')
 % hold on
 
-tl = 0:5:100;
+tl = 0:1:100;
 ticklabels = cellstr(num2str(tl'));
+colors = [0 0.4470 0.7410; % 90 pinch
+        0.8500 0.3250 0.0980; % 120 pinch
+        0.9290 0.6940 0.1250; % 90 caging
+        0.4660 0.6740 0.1880 % 120 caging
+            ];
 
 for i = 1:4
     %{
@@ -35,7 +40,7 @@ for i = 1:4
     e_data = data.('Displacement'); % extension in mm
     f_data = data.('Force'); % force in N
 
-    plot(e_data, f_data, '-', 'LineWidth', 1.5, 'DisplayName', legend_labels{i})
+    plot(e_data, f_data, '-', 'LineWidth', 1.5, 'DisplayName', legend_labels{i}, 'Color', colors(i, :))
     hold on
 
     fprintf('Maximum Force [in N] = %f\n', max(f_data))
@@ -44,21 +49,21 @@ end
 title({"Grip Force Test";'For HSA Rotation of 90\circ and 120\circ'})
 xlabel('Extension [mm]')
 ylabel('Normal Force, F_g [N]')
-xlim([0 50]) % extension scale
+xlim([0 10]) % extension scale
 ylim([0 13]) % force scale
 
 xticks(tl)
 xticklabels(ticklabels)
 
-grid on
-legend('Location', 'south')
+% grid on
+legend('Location', 'southeast', 'Box', 'off')
 
 
 % figure size
 
 x0 = 900;
 y0 = 410;
-width = 450;
-height = 400;
+width = 410;
+height = 350;
 set(gcf, 'position', [x0, y0, width, height])
 exportgraphics(gcf, 'D:\Srivatsan\HSA-gripper-files\Plot Images\GripForce.png', 'Resolution', 800)
