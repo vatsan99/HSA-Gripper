@@ -10,11 +10,11 @@ clc
 % imported_data = {'GripforceTestSample_4-NoEcoflexLayer.csv', 'GripforceTestSample_8-PinchGrasp2.csv', 'GripforceTestSample_7-CagingGrasp2'};
 % legend_labels = {'Pinch Grasp: No Ecoflex', 'Pinch Grasp', 'Caging Grasp'};
 
-imported_data = {'Grip Force Test (Apr 28)/GripforceTestSample-90degPinch.csv'
-                'Grip Force Test (Apr 28)/GripforceTestSample-120degPinch.csv'
-                'Grip Force Test (Apr 28)/GripforceTestSample-90degCaging.csv'
-                'Grip Force Test (Apr 28)/GripforceTestSample-120Caging.csv'};
-legend_labels = {'Pinch Grasp (90\circ)', 'Pinch Grasp (120\circ)', 'Caging Grasp (90\circ)', 'Caging Grasp (120\circ)'};
+imported_data = {'Grip Force Test (May 13)/GripForceTestSample - May13_90Pinch.csv'
+                'Grip Force Test (May 13)/GripForceTestSample - May13_120Pinch.csv'
+                'Grip Force Test (May 13)/GripForceTestSample - May13_90Caging.csv'
+                'Grip Force Test (May 13)/GripForceTestSample - May13_120Caging.csv'};
+legend_labels = {'Pinch Grasp: 90\circ', 'Pinch Grasp: 120\circ', 'Caging Grasp: 90\circ', 'Caging Grasp: 120\circ'};
 
 figure()
 
@@ -38,32 +38,38 @@ for i = 1:4
     %}
     data = readtable(imported_data{i}, "VariableNamingRule", "preserve");
     e_data = data.('Displacement'); % extension in mm
-    f_data = data.('Force'); % force in N
+    f_data = data.('Force').*1000; % force in N
 
-    plot(e_data, f_data, '-', 'LineWidth', 1.5, 'DisplayName', legend_labels{i}, 'Color', colors(i, :))
+    % Normalize e_data and f_data to start at 0
+    n_e_data = e_data - e_data(1);
+    n_f_data = f_data - f_data(1);
+
+    plot(n_e_data, n_f_data, '-', 'LineWidth', 1.2, 'DisplayName', legend_labels{i}, 'Color', colors(i, :))
     hold on
 
     fprintf('Maximum Force [in N] = %f\n', max(f_data))
 end
 
-title({"Grip Force Test";'For HSA Rotation of 90\circ and 120\circ'})
+title({"Grip Force Test";'For 90\circ and 120\circ HSA Rotation'})
 xlabel('Extension [mm]')
-ylabel('Normal Force, F_g [N]')
+ylabel('Normal Force, \it F_n \rm [N]')
 xlim([0 10]) % extension scale
-ylim([0 13]) % force scale
+ylim([0 14]) % force scale
 
 xticks(tl)
 xticklabels(ticklabels)
 
+yticks(0:2:15)
+
 % grid on
-legend('Location', 'southeast', 'Box', 'off')
+legend('Location', 'southeast', 'Box', 'on')
 
 
 % figure size
 
 x0 = 900;
 y0 = 410;
-width = 410;
-height = 350;
+width = 500;
+height = 400;
 set(gcf, 'position', [x0, y0, width, height])
-exportgraphics(gcf, 'D:\Srivatsan\HSA-gripper-files\Plot Images\GripForce.png', 'Resolution', 800)
+exportgraphics(gcf, 'D:\Srivatsan\HSA-gripper-files\Plot Images\GripForce.png', 'Resolution', 500)
