@@ -12,14 +12,14 @@ t_n = table2array(FEA_data(:, 2)); % number of triangles
 disp = table2array(FEA_data(:, 3)); % in-plane deformation
 K = 0.01./disp; % Bending Stiffness = Force applied / deflection
 
-ang_disp = table2array(FEA_data(:, 6));
+ang_disp = table2array(FEA_data(:, 7));
 kappa = 5./ang_disp; % Torsional stiffness = Moment / angle of rotation
 
 
 figure()
 
 subplot(1, 3, 1)
-plot(t_n, K, 'k.', 'MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'k', 'DisplayName', 'TR-SLL: F = 0.01 N') % (0.01)./
+plot(t_n, K,'k.', 'MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'k', 'DisplayName', 'TR-SLL: F = 0.01 N') % (0.01)./
 legend('Location', 'southeast')
 xlim([0 82])
 ylim([min(K)-0.1e-3 max(K)+0.1e-3])
@@ -31,13 +31,13 @@ xticks(tl)
 xticklabels(ticklabels)
 
 subplot(1, 3, 2)
-plot(t_n, kappa, 'k.', 'MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'k', 'DisplayName', 'TR-SLL: M = 5 Nmm') % (0.01)./
+plot(t_n, kappa,'k.', 'MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'k', 'DisplayName', 'TR-SLL: M = 5 Nmm') % (0.01)./
 legend('Location', 'northeast')
 xlim([0 82])
-ylim([min(kappa)-10 max(kappa)+10])
+ylim([min(kappa)-20 max(kappa)+20])
 box on
 xlabel('Number of Triangles [-]')
-ylabel('Torsional Stiffness, \kappa [N/mm]')
+ylabel('Torsional Stiffness, \kappa [Nmm/rad]')
 title({'Torsional Stiffness: TR-SLL';'Simulated Data'})
 xticks(tl)
 xticklabels(ticklabels)
@@ -49,15 +49,15 @@ stress_twist = table2array(FEA_data(:, 8)); % average stress during twist
 
 subplot(1, 3, 3)
 yyaxis left
-p1 = plot(t_n, stress_in_plane, 'r.','MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'r', 'DisplayName', 'Average Stress: In-Plane');
+p1 = plot(t_n, stress_in_plane,'r.','MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'r', 'DisplayName', 'Average Stress: Bending');
 ylabel("Average Stress: Bending [MPa]")
 ylim([0.01 0.20])
 set(gca, 'YColor', p1.Color)
 
 hold on
 yyaxis right
-p2 = plot(t_n, stress_twist, 'k.','MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'b', 'DisplayName', 'Average Stress: Twist');
-ylabel("Average Stress: Twisting [MPa]")
+p2 = plot(t_n, stress_twist, 'k.','MarkerSize', ms, 'LineWidth', 1.5, "MarkerFaceColor", 'b', 'DisplayName', 'Average Stress: Torsion');
+ylabel("Average Stress: Torsion [MPa]")
 ylim([0.01 0.20])
 set(gca, 'YColor', p2.Color)
 xticks(tl)
