@@ -1,7 +1,15 @@
 clc 
 close all
 
+%{
+    This script processes the data from a normal force test performed on the Instron testing apparatus
+%}
+
 data = {'grippergapdata\grippergapdata_1.csv', 'grippergapdata\grippergapdata_2.csv', 'grippergapdata\grippergapdata_3.csv', 'grippergapdata\grippergapdata_4.csv', 'grippergapdata\grippergapdata_5.csv'};
+
+gap = 52.25; % distance from the point of application of force to the edge
+
+div = [1, 10, 20, 30, 40];
 
 for i = 1:5
     raw_data = readtable(data{i}, "VariableNamingRule", "preserve");
@@ -18,17 +26,11 @@ for i = 1:5
 
     plot(time(steadyStartIndex:end), steady_torque_response, '.')
     hold on
+
+    fprintf("Average Normal Force = %f\n", abs(mean((steady_torque_response)/gap))) % N-mm / mm
     
-    % calculating force from torque response
-    if i == 1
-        fprintf("Average Normal Force = %f\n", mean(abs(steady_torque_response))/1) % N-mm / mm
-    elseif i == 2
-        fprintf("Average Normal Force = %f\n", mean(abs(steady_torque_response))/10)
-    elseif i == 3
-        fprintf("Average Normal Force = %f\n", mean(abs(steady_torque_response))/20)
-    elseif i == 4
-        fprintf("Average Normal Force = %f\n", mean(abs(steady_torque_response))/30)
-    elseif i == 5
-        fprintf("Average Normal Force = %f\n", mean(abs(steady_torque_response))/40)
-    end
+
 end
+
+xlabel('Time [s]')
+ylabel('Torque [Nmm]')
