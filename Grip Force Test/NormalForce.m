@@ -3,11 +3,13 @@ close all
 
 %{
     This script processes the data from a normal force test performed on the Instron testing apparatus
+
+	Estimates force from torque data
 %}
 
 data = {'grippergapdata\grippergapdata_1.csv', 'grippergapdata\grippergapdata_2.csv', 'grippergapdata\grippergapdata_3.csv', 'grippergapdata\grippergapdata_4.csv', 'grippergapdata\grippergapdata_5.csv'};
 
-gap = 52.25; % distance from the point of application of force to the edge
+gap = 52.25; % distance from the point of application of force to the axis of rotation
 
 div = [1, 10, 20, 30, 40];
 

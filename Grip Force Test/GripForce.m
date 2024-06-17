@@ -1,3 +1,7 @@
+%{
+	Raw data processing and visualization for grip force characterization
+%}
+
 close all
 clc
 

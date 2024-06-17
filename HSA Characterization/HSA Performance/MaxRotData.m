@@ -1,3 +1,7 @@
+%{
+	Plots data at maximum rotation of the tested metamaterial at different extensions
+%}
+
 close all
 clc
 
