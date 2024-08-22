@@ -1,5 +1,5 @@
 %{
-	Raw data processing and visualization for grip force characterization
+    Reading and visualizing the force response from a soft gripper's grasping test (or) grip force test
 %}
 
 close all

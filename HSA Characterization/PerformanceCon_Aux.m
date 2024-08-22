@@ -1,15 +1,25 @@
 close all
 clc
 
-data_files = ["HSA-Peformance_Test-3Apr-SingleHSA.csv", "HSAGripper-TestSet2-7Apr-DoubleHSA.csv", "HSAGripper-TestSet2-5Apr-8RowHSA.csv"];
+%{
+    Heat map with auxetic material's path along which it deforms
+%}
+
+run('SpringConstantMatrixGripper.m')
+
+data_files = ["HSA-Peformance_Test-3Apr-SingleHSA.csv"
+            "HSAGripper-TestSet2-7Apr-DoubleHSA.csv"
+            "HSAGripper-TestSet2-5Apr-8RowHSA.csv"];
 
 % Plot Parameters
 
 specified_points = [40 2; 20 30; 40 15]; % Probe Points
-aux_trajectory = {0.2512, 0, 0}; % Slope of Trajectory Lines
+aux_trajectory = {0.2512, 0.3086, 0.2435}; % Slope of Trajectory Lines
 
 titles = {'Monolithic HSA', 'Stacked HSA', 'Standard 8-Row HSA'};
-cm = 'summer';
+cm = 'parula';
+ticklabels = {'0', '30', '60', '90', '120'};
+tl = [0 30 60 90 120];
 
 % Loop over the data files
 for i = 1:length(data_files)
@@ -50,20 +60,22 @@ for i = 1:length(data_files)
     colormap(cm)
     subplot(2, 3, i)
     contourf(X_grid, Y_grid, Z_grid, 'EdgeColor', 'none', 'HandleVisibility', 'off');
+    xticks(tl)
+    xticklabels(ticklabels)
     
 
     % Probes
-    for j = 1:size(specified_points, 1)
-        specified_X = specified_points(j, 1);
-        specified_Y = specified_points(j, 2);
+    % for j = 1:size(specified_points, 1)
+    %     specified_X = specified_points(j, 1);
+    %     specified_Y = specified_points(j, 2);
 
-    % Find the closest grid point
-    [~, idx] = min(abs(X_grid(:) - specified_X) + abs(Y_grid(:) - specified_Y));
-    [x_idx, y_idx] = ind2sub(size(X_grid), idx);
+    % % Find the closest grid point
+    % [~, idx] = min(abs(X_grid(:) - specified_X) + abs(Y_grid(:) - specified_Y));
+    % [x_idx, y_idx] = ind2sub(size(X_grid), idx);
 
-    % Add the Z value at the specified point to the plot
-    text(X_grid(x_idx, y_idx), Y_grid(x_idx, y_idx), num2str(Z_grid(x_idx, y_idx)), 'HorizontalAlignment', 'center', 'Color', 'black');
-    end
+    % % Add the Z value at the specified point to the plot
+    % text(X_grid(x_idx, y_idx), Y_grid(x_idx, y_idx), num2str(Z_grid(x_idx, y_idx)), 'HorizontalAlignment', 'center', 'Color', 'black');
+    % end
 
     box on
     title({titles{i};'Force (F)'});
@@ -85,24 +97,24 @@ for i = 1:length(data_files)
     y2 = aux_trajectory{2} * x;
     y3 = aux_trajectory{3} * x;
     z = zeros(length(x), 1);
-
+    lw = 0.8;
     if i == 1
         hold on  
-        plot(x, y, 'k--', 'LineWidth', 0.8, 'DisplayName', 'Auxetic Trajectory');
+        plot(x, y, 'k--', 'LineWidth', lw, 'DisplayName', 'Auxetic Trajectory');
     end
     if i == 2
         hold on
-        plot(x, y2, 'k--', 'LineWidth', 0.8, 'DisplayName', 'Auxetic Trajectory');
+        plot(x, y2, 'k--', 'LineWidth', lw, 'DisplayName', 'Auxetic Trajectory');
     end
     if i == 3
         hold on
-        plot(x, y3, 'k--', 'LineWidth', 0.8, 'DisplayName', 'Auxetic Trajectory');
+        plot(x, y3, 'k--', 'LineWidth', lw, 'DisplayName', 'Auxetic Trajectory');
     end
         
-    % legend('Location', 'northwest', 'FontSize', 8)
-    % legend('boxoff')
+    legend('Location', 'northwest')
+    legend('boxoff')
 
-    xlabel('Rotation [\theta]')
+    xlabel('Rotation, \theta [degrees]')
     ylabel('Extension [mm]')
 
     xlim([min(X_range) max(X_range)]);
@@ -158,17 +170,17 @@ for i = 1:length(data_files)
     contourf(X_grid, Y_grid, Z1_grid, 'EdgeColor', 'none', 'EdgeColor', 'none');
 
     % Probes
-    for j = 1:size(specified_points, 1)
-        specified_X = specified_points(j, 1);
-        specified_Y = specified_points(j, 2);
+    % for j = 1:size(specified_points, 1)
+    %     specified_X = specified_points(j, 1);
+    %     specified_Y = specified_points(j, 2);
 
-    % Find the closest grid point
-    [~, idx] = min(abs(X_grid(:) - specified_X) + abs(Y_grid(:) - specified_Y));
-    [x_idx, y_idx] = ind2sub(size(X_grid), idx);
+    % % Find the closest grid point
+    % [~, idx] = min(abs(X_grid(:) - specified_X) + abs(Y_grid(:) - specified_Y));
+    % [x_idx, y_idx] = ind2sub(size(X_grid), idx);
 
-    % Add the Z value at the specified point to the plot
-    text(X_grid(x_idx, y_idx), Y_grid(x_idx, y_idx), num2str(Z1_grid(x_idx, y_idx)), 'HorizontalAlignment', 'center', 'Color', 'black');
-    end
+    % % Add the Z value at the specified point to the plot
+    % text(X_grid(x_idx, y_idx), Y_grid(x_idx, y_idx), num2str(Z1_grid(x_idx, y_idx)), 'HorizontalAlignment', 'center', 'Color', 'black');
+    % end
 
     box on
     title({titles{i};'Torque (\tau)'});
@@ -176,6 +188,8 @@ for i = 1:length(data_files)
     ylabel('Extension, y [mm]');
     zlabel('Torque [Nmm]');
     axis tight
+    xticks(tl)
+    xticklabels(ticklabels)
     grid off
     view(0, 90)
 end
@@ -188,6 +202,8 @@ title_string = {'\tau [Nmm]'};
 set(title_handle ,'String', title_string);
 
 
+
+
 % figure size
 
 x0 = 900;
@@ -195,4 +211,4 @@ y0 = 410;
 width = 800;
 height = 550;
 set(gcf, 'position', [x0, y0, width, height])
-exportgraphics(gcf, 'D:\Srivatsan\HSA-gripper-files\Plot Images\PerformanceComparison.png', 'Resolution', 800)
+exportgraphics(gcf, 'D:\Srivatsan\HSA-gripper-files\Plot Images\ContourWAuxTraj.png', 'Resolution', 800)

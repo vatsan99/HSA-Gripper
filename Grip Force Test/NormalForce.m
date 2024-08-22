@@ -9,9 +9,9 @@ close all
 
 data = {'grippergapdata\grippergapdata_1.csv', 'grippergapdata\grippergapdata_2.csv', 'grippergapdata\grippergapdata_3.csv', 'grippergapdata\grippergapdata_4.csv', 'grippergapdata\grippergapdata_5.csv'};
 
-gap = 52.25; % distance from the point of application of force to the axis of rotation
+gap = 52.25; % distance from the point of application of force to the axis
 
-div = [1, 10, 20, 30, 40];
+div = [1, 10, 20, 30, 40]; % distance from the object
 
 for i = 1:5
     raw_data = readtable(data{i}, "VariableNamingRule", "preserve");

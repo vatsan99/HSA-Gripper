@@ -1,6 +1,7 @@
 close all
 clc
 
+% Identical, but for two different material configurations
 
 dataHSA = {'.\StandardHSA\HSA_GRIPPER_SpringConstantData_StandardHSA', '.\StackedHSA\HSA_GRIPPER_SpringConstantData_SingleSectionalHSA'};
 

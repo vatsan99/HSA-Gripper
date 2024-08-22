@@ -1,6 +1,13 @@
 clc
 close all
 
+%{
+    TR-SLL is the short form of torsion-resistant strain limiting layer. Refer to https://arxiv.org/pdf/2311.02454 to read about TR-SLLs.
+
+    Data from Ansys FEA simulations 
+%}
+
+
 FEA_data = readtable('TR-SLL_FEA Data - Updated.xlsx', 'VariableNamingRule', 'preserve');
 
 ticklabels = string(0:10:80);
@@ -11,10 +18,12 @@ y_ticklabels = string(3.5e-3:0.2e-3:4.5e-3);
 ms = 15; % marker size
 font = 'Times New Roman';
 
-t_n = table2array(FEA_data(:, 2)); % number of triangles
+t_n = table2array(FEA_data(:, 2)); % number of triangles on the structural layer
+
 disp = table2array(FEA_data(:, 3)); % in-plane deformation
-K = 0.01./disp; % Bending Stiffness = Force applied / deflection
 ang_disp = table2array(FEA_data(:, 7));
+
+K = 0.01./disp; % Bending Stiffness = Force applied / deflection
 kappa = 5./ang_disp; % Torsional stiffness = Moment / angle of rotation
 
 figure()
